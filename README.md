@@ -1,21 +1,12 @@
-[![CircleCI](https://circleci.com/gh/griffinpp/objection-soft-delete/tree/master.svg?style=shield)](https://circleci.com/gh/griffinpp/objection-soft-delete/tree/master)
-[![Coverage Status](https://coveralls.io/repos/github/griffinpp/objection-soft-delete/badge.svg?branch=master)](https://coveralls.io/github/griffinpp/objection-soft-delete?branch=master)
-
-# objection-soft-delete
-A plugin that adds soft-delete functionality to [Objection.js](https://github.com/Vincit/objection.js/)
+# @k4connect/objection-soft-delete
+A fork of the plugin that adds soft-delete functionality to [Objection.js](https://github.com/Vincit/objection.js/)
 
 ## Installation
 
 ### NPM
 
 ```sh
-npm i objection-soft-delete --save
-```
-
-### Yarn
-
-```sh
-yarn add objection-soft-delete
+npm i @k4connect/objection-soft-delete --save
 ```
 
 ## Usage
@@ -34,7 +25,7 @@ class User extends softDelete({ columnName: 'deleted' })(Model) {
   static get tableName() {
     return 'Users';
   }
-  
+
   static get jsonSchema() {
     return {
       type: 'object',
@@ -50,10 +41,6 @@ class User extends softDelete({ columnName: 'deleted' })(Model) {
   }
 }
 ```
-
-#### Note: Make sure the `deleted` field of your table has a default value of `false` (and, while not required, you'll probably want to make it not nullable as well). A `deleted` value of `NULL` will result in this plugin producing unexpected behavior.
-
-### When `.delete()` or `.del()` is called for that model, the matching row(s) are flagged `true` instead of deleted
 #### Delete a User:
 ```js
 await User.query().where('id', 1).delete(); // db now has: { User id: 1, deleted: true, ... }
@@ -128,9 +115,9 @@ class UserGroup extends Model {
   static get tableName() {
     return 'UserGroups';
   }
-  
+
   ...
-  
+
   static get relationMappings() {
     return {
       users: {
@@ -257,7 +244,7 @@ One issue that comes with doing soft deletes is that your calls to `.delete()` w
       // do something before a normal update
     }
   }
-  
+
   // same procedure for $afterUpdate
 ```
 Available flags are:
