@@ -14,7 +14,7 @@ module.exports = (incomingOptions) => {
           softDelete: true,
         });
         const patch = {};
-        patch[options.columnName] = new Date().toISOString();
+        patch[options.columnName] = new Date();
         return this.patch(patch);
       }
 
